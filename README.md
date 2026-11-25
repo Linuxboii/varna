@@ -16,6 +16,14 @@ Colour contrast checker that suggests a fix.
 
 Suggestions keep hue and chroma and only move lightness, so brand colours stay recognisable.
 
+## Demand
+
+Semrush estimates about 11,900 searches a month for the phrase "webaim contrast checker" alone, and about 600,000 visits a month to webaim.org.
+
+- [Semrush: webaim.org](https://nl.semrush.com/website/webaim.org/overview)
+
+These figures measure demand for the task, from existing tools. They are third-party estimates or company claims, not usage of this tool.
+
 ## Privacy
 
 Everything runs in your browser. There is no backend, no analytics and no account. Nothing you enter is uploaded.
