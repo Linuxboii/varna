@@ -1,0 +1,12 @@
+{
+  "name": "varna",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Colour contrast checker that suggests a fix",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes serve -l 5173 ."
+  }
+}

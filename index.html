@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Varna - Colour contrast checker that suggests a fix</title>
+  <meta name="description" content="Check text and background colours against WCAG AA and AAA. When a pair fails, get the closest colour that passes, keeping the same hue.">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    :root { --accent: #0e7490; }
+    @media (prefers-color-scheme: dark) { :root { --accent: #22d3ee; --accent-ink: #042f37; } }
+    .pick { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: center; }
+    .pick input[type=color] { width: 52px; height: 44px; padding: 2px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-2); cursor: pointer; }
+    .sample { border-radius: var(--radius); padding: 28px 24px; border: 1px solid var(--border); }
+    .sample .big { font-size: 28px; font-weight: 700; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .sample p { margin: 0; }
+    .ratio { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1; }
+    .checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+    .check { padding: 10px 12px; border-radius: var(--radius); background: var(--surface-2); font-size: 14px; display: flex; justify-content: space-between; gap: 8px; }
+    .check b.pass { color: var(--ok); }
+    .check b.fail { color: var(--danger); }
+    .fix { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; }
+    .fix + .fix { border-top: 1px solid var(--border); }
+    .sw { width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap">
+    <h1>Varna</h1>
+    <p>Check whether text is readable on its background. If it is not, get the nearest colour that passes, in the same hue.</p>
+  </div></header>
+  <main><div class="wrap grid-2">
+    <section class="panel stack">
+      <label class="field">Text colour
+        <span class="pick"><input type="color" id="fgPick" aria-label="Pick text colour"><input type="text" id="fg" spellcheck="false" autocomplete="off"></span>
+      </label>
+      <label class="field">Background colour
+        <span class="pick"><input type="color" id="bgPick" aria-label="Pick background colour"><input type="text" id="bg" spellcheck="false" autocomplete="off"></span>
+      </label>
+      <div class="row"><button type="button" id="swap">Swap colours</button><button type="button" id="share">Copy share link</button></div>
+      <p class="err" id="err" role="alert"></p>
+      <div class="sample" id="sample">
+        <p class="big">Large text, 24 px bold</p>
+        <p>Normal body text. The quick brown fox jumps over the lazy dog, then checks the bus timetable.</p>
+      </div>
+    </section>
+    <section class="panel stack" aria-live="polite">
+      <div><div class="ratio" id="ratio">-</div><span class="muted small">Contrast ratio, needs 4.5 for body text</span></div>
+      <div class="checks" id="checks"></div>
+      <h2 style="margin-top:6px">Closest passing colours</h2>
+      <div id="fixes"></div>
+    </section>
+  </div></main>
+  <footer class="bottom"><div class="wrap">
+    <span>Varna. Free and open source.</span>
+    <span><a href="https://github.com/Linuxboii/varna">Source</a> &nbsp; <a href="https://sushanth.avlokai.com">Made by Sushanth Kasturi</a></span>
+  </div></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
